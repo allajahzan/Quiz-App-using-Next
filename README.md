@@ -1,3 +1,3 @@
-It's a quiz app designed with NextJS + TypeScript
+It's a quiz app designed with Next + TypeScript
 
 * to run 'npm run dev'
