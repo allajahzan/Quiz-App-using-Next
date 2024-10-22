@@ -8,7 +8,7 @@ export default async function Home({ params }: { params?: { category: string[] }
     if (!param) {
         data = { quiz: [] }
     } else {
-        const res = await fetch(`http://localhost:5000/questions/${param}`, { cache: 'force-cache' })
+        const res = await fetch(`http://localhost:5000/questions/${param}`, { cache: 'force-cache',next:{revalidate:30} })
         data = await res.json()
     }
 

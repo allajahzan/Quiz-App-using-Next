@@ -3,7 +3,7 @@ import RestartButton from "@/app/Ui/RestartButton"
 
 async function page({ params }: { params: { score: string, category: string } }) {
 
-  const res = await fetch(`http://localhost:5000/questions/${params.category}`, { cache: 'force-cache' })
+  const res = await fetch(`http://localhost:5000/questions/${params.category}`, { cache: 'force-cache' ,next:{revalidate:30} })
   const data = await res.json()
 
   return (
