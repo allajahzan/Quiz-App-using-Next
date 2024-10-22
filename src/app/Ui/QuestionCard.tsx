@@ -12,7 +12,8 @@ interface objectType {
 }
 
 interface propType {
-    quiz: objectType[]
+    quiz: objectType[],
+    category?:String
 }
 
 const shuffleArray = (array: any) => {
@@ -23,7 +24,7 @@ const shuffleArray = (array: any) => {
     return array;
 };
 
-export default function Question({ quiz }: propType) {
+export default function Question({ quiz, category }: propType) {
 
     const [quesions, _setQuesion] = useState<objectType[]>(quiz)
     const [currentQuestion, setCurrentQuestion] = useState<number>(0);
@@ -44,6 +45,7 @@ export default function Question({ quiz }: propType) {
         setSelect(localStorage.getItem('isSelect') === 'true' ? true : false)
         setAnswer(localStorage.getItem('answer') ? localStorage.getItem('answer') as string : '')
         setScore(localStorage.getItem('score') ? Number(localStorage.getItem('score')) : 0)
+        localStorage.setItem('category', `${category}`)
     }, [])
 
 
@@ -75,6 +77,7 @@ export default function Question({ quiz }: propType) {
             setAnswer(answer)
             localStorage.setItem('isSelect', 'true')
             localStorage.setItem('answer', `${answer}`)
+            localStorage.setItem('category', `${category}`)
         }
     }
 
@@ -103,6 +106,7 @@ export default function Question({ quiz }: propType) {
                 return prev
             })
             localStorage.setItem('score', `${score}`)
+            localStorage.setItem('category', `${category}`)
             setSelect(false)
             setAnswer('')
         } else {
@@ -113,6 +117,7 @@ export default function Question({ quiz }: propType) {
                 setAnswer('')
                 setScore(0)
                 localStorage.clear()
+                localStorage.setItem('category', `${category}`)
             }, 1000);
         }
     }

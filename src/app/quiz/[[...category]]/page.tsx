@@ -17,7 +17,7 @@ export default async function Home({ params }: { params?: { category: string[] }
             <Navbar />
             <div className="p-5 px-40 flex ">
                 <div className="bg-gray-100 mt-5 w-full rounded-lg p-3">
-                    <Question quiz={data.quiz} />
+                    <Question quiz={data.quiz} category={params?.category?.[0]} />
                 </div>
             </div>
         </>
